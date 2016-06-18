@@ -16,11 +16,11 @@ public class ProfileBean {
     ObservableList<ExerciseBean> historyList;
     ChartsDataParser chartsDataParser;
 
-    public ProfileBean(){
+    ProfileBean(){
         initializeProfileBean();
     }
 
-    public ObservableList<String> getNames(){
+    ObservableList<String> getNames(){
         List<String> names = new ArrayList<String>();
         for(ExerciseBean bean: historyList){
             if(!names.contains(bean.getExerName())){
@@ -58,7 +58,6 @@ public class ProfileBean {
         return historyStrings;
     }
 
-
     ObservableList<PieChart.Data> getPieChartData(){
         return chartsDataParser.getPieChartData();
     }
@@ -67,12 +66,7 @@ public class ProfileBean {
         return chartsDataParser.parseBarData();
     }
 
-    void parseChartsData(){
+    private void parseChartsData(){
         chartsDataParser = new ChartsDataParser(historyList);
     }
-
-
-
-
-
 }

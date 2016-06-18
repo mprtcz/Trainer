@@ -18,7 +18,7 @@ public class App extends javafx.application.Application {
 
         Scene scene = new Scene(root, 1024, 768);
 
-        window.setTitle("Trainer");
+        window.setTitle("Training Logger");
         window.setScene(scene);
         window.show();
 

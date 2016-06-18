@@ -15,7 +15,7 @@ public class ChartsDataParser {
     ObservableList<ExerciseBean> historyList;
     ExercisesList exerciseTypes;
 
-    public ChartsDataParser(ObservableList<ExerciseBean> historyList) {
+    ChartsDataParser(ObservableList<ExerciseBean> historyList) {
         this.historyList = historyList;
         exerciseTypes = new ExercisesList(historyList);
     }
@@ -49,9 +49,5 @@ public class ChartsDataParser {
             chartData.add(series);
         }
         return chartData;
-    }
-
-    private static void sortDates(List<XYChart.Series> data){
-
     }
 }

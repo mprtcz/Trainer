@@ -13,7 +13,7 @@ class ExercisesList {
 
     private ObservableList<ExerciseBean> historyList;
 
-    public ExercisesList(ObservableList<ExerciseBean> historyList) {
+    ExercisesList(ObservableList<ExerciseBean> historyList) {
         this.historyList = historyList;
     }
 
@@ -36,7 +36,7 @@ class ExercisesList {
         return exercisesRepsSumList;
     }
 
-    public List<ExercisesWithSameDate> groupExercisesByDate(){
+    private List<ExercisesWithSameDate> groupExercisesByDate(){
         List<ExercisesWithSameDate> exercisesListGroupedByDate = new ArrayList<>();
         for(ExerciseBean exerciseBean : historyList){
             if(!containsObjectWithName(exercisesListGroupedByDate, exerciseBean)){
@@ -53,7 +53,7 @@ class ExercisesList {
         //TODO sum exercisesWithTheSameDateList in ExercisesWithTheSameDate objects, group them by date and draw on chart
     }
 
-    public List<ExercisesWithSameDate> sumExercisesInDates(){
+    List<ExercisesWithSameDate> sumExercisesInDates(){
         List<ExercisesWithSameDate> days = groupExercisesByDate();
         for(ExercisesWithSameDate date : days){
             date.sumExercises();
@@ -62,7 +62,7 @@ class ExercisesList {
         return days;
     }
 
-    public List<String> getAllExercisesNames(){
+    List<String> getAllExercisesNames(){
         List<String> names = new ArrayList<>();
         for(ExerciseBean exerciseBean: historyList){
             if(!names.contains(exerciseBean.getExerName())){
@@ -76,12 +76,12 @@ class ExercisesList {
         List<ExerciseBean> exercisesWithTheSameDateList = new ArrayList<>();
         String listDate;
 
-        public ExercisesWithSameDate(String listDate, ExerciseBean exerciseBean) {
+        ExercisesWithSameDate(String listDate, ExerciseBean exerciseBean) {
             this.listDate = listDate;
             this.exercisesWithTheSameDateList.add(exerciseBean);
         }
 
-        public boolean add(ExerciseBean exerciseBean){
+        boolean add(ExerciseBean exerciseBean){
             if(exerciseBean.toDayString().equals(listDate)){
                 exercisesWithTheSameDateList.add(exerciseBean);
                 return true;
@@ -90,7 +90,7 @@ class ExercisesList {
             }
         }
 
-        public void sumExercises(){
+        void sumExercises(){
             List<ExerciseBean> summedBeans = new ArrayList<>();
             for(ExerciseBean exerciseBean : exercisesWithTheSameDateList){
                 addRepsToExercise(exerciseBean, summedBeans);
@@ -98,11 +98,11 @@ class ExercisesList {
             exercisesWithTheSameDateList = summedBeans;
         }
 
-        public List<ExerciseBean> getExercisesWithTheSameDateList() {
+        List<ExerciseBean> getExercisesWithTheSameDateList() {
             return exercisesWithTheSameDateList;
         }
 
-        public String getListDate() {
+        String getListDate() {
             return listDate;
         }
 

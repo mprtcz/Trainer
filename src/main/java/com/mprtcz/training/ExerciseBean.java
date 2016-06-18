@@ -15,30 +15,30 @@ public class ExerciseBean {
     private String stringRepresentation;
     private String dateTimeString;
 
-    public ExerciseBean(String name, int reps) {
+    ExerciseBean(String name, int reps) {
         this.reps = reps;
         this.exerName = name;
         this.dateTime = LocalDateTime.now();
         dateTimeString = dateTime.format(DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm:ss"));
     }
 
-    public static class Builder{
+    static class Builder{
         private final int reps;
         private final String exerName;
 
         private String dateTimeString = "";
 
-        public Builder (String exerName, int reps){
-            this.exerName = exerName;
+        Builder(String exerciseName, int reps){
+            this.exerName = exerciseName;
             this.reps = reps;
         }
 
-        public Builder dateTime(String newDateTime){
+        Builder dateTime(String newDateTime){
             dateTimeString = newDateTime;
             return this;
         }
 
-        public ExerciseBean build(){
+        ExerciseBean build(){
             return new ExerciseBean(this);
         }
 
@@ -59,7 +59,7 @@ public class ExerciseBean {
         }
     }
 
-    public String toDayString(){
+    String toDayString(){
         if(stringRepresentation!=null) {
             String[] parts = stringRepresentation.split("on: ");
             return parts[1].substring(0, 10);
@@ -68,21 +68,19 @@ public class ExerciseBean {
         }
     }
 
-    public int getReps() {
+    int getReps() {
         return reps;
     }
 
-    public String getExerName() {
+    String getExerName() {
         return exerName;
     }
 
-    public LocalDateTime getDateTime() {
+    LocalDateTime getDateTime() {
         return dateTime;
     }
 
-    public void addRepsToBean(int reps){
+    void addRepsToBean(int reps){
         this.reps += reps;
     }
-
-
 }

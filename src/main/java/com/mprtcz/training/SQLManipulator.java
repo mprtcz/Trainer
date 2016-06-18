@@ -7,9 +7,9 @@ import java.util.List;
 /**
  * Created by Azet on 2016-02-28.
  */
-public class SQLManipulator {
+class SQLManipulator {
 
-    public static void saveBean(ExerciseBean bean) throws Exception {
+    static void saveBean(ExerciseBean bean) throws Exception {
         Class.forName("org.sqlite.JDBC");
 
         Connection connection = DriverManager.getConnection("jdbc:sqlite:src\\main\\resources\\history.db");
@@ -31,7 +31,7 @@ public class SQLManipulator {
         connection.close();
     }
 
-    public static List<ExerciseBean> loadBeans() throws Exception {
+    static List<ExerciseBean> loadBeans() throws Exception {
         Class.forName("org.sqlite.JDBC");
 
         List<ExerciseBean> list = new ArrayList<ExerciseBean>();
@@ -60,5 +60,4 @@ public class SQLManipulator {
 
         return list;
     }
-
 }

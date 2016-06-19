@@ -42,8 +42,12 @@ public class Controller {
 
             ExerciseBean bean = new ExerciseBean(exerciseName, reps);
 
-            profileBean.addExercise(bean);
-            updateGUI();
+            if(bean.getReps()>0) {
+                profileBean.addExercise(bean);
+                updateGUI();
+            } else {
+                messagesLabel.setText("Use only positive numbers");
+            }
 
         } catch (Exception ex) {
             System.out.println("Exceptions! " +ex.getCause() +" message: " +ex.getMessage());

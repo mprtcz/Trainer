@@ -1,4 +1,6 @@
-package com.mprtcz.training;
+package com.mprtcz.training.sqlOperators;
+
+import com.mprtcz.training.beans.ExerciseBean;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -7,9 +9,9 @@ import java.util.List;
 /**
  * Created by Azet on 2016-02-28.
  */
-class SQLManipulator {
+public class SQLManipulator {
 
-    static void saveBean(ExerciseBean bean) throws Exception {
+    public static void saveBean(ExerciseBean bean) throws Exception {
         Class.forName("org.sqlite.JDBC");
 
         Connection connection = DriverManager.getConnection("jdbc:sqlite:src\\main\\resources\\history.db");
@@ -31,7 +33,7 @@ class SQLManipulator {
         connection.close();
     }
 
-    static List<ExerciseBean> loadBeans() throws Exception {
+    public static List<ExerciseBean> loadBeans() throws Exception {
         Class.forName("org.sqlite.JDBC");
 
         List<ExerciseBean> list = new ArrayList<ExerciseBean>();

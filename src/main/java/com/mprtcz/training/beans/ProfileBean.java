@@ -1,5 +1,7 @@
-package com.mprtcz.training;
+package com.mprtcz.training.beans;
 
+import com.mprtcz.training.chartDataOperators.ChartsDataParser;
+import com.mprtcz.training.sqlOperators.SQLManipulator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
@@ -16,11 +18,11 @@ public class ProfileBean {
     ObservableList<ExerciseBean> historyList;
     ChartsDataParser chartsDataParser;
 
-    ProfileBean(){
+    public ProfileBean(){
         initializeProfileBean();
     }
 
-    ObservableList<String> getNames(){
+    public ObservableList<String> getNames(){
         List<String> names = new ArrayList<String>();
         for(ExerciseBean bean: historyList){
             if(!names.contains(bean.getExerName())){
@@ -31,7 +33,7 @@ public class ProfileBean {
         return FXCollections.observableArrayList(names);
     }
 
-    void addExercise(ExerciseBean exerciseBean) {
+    public void addExercise(ExerciseBean exerciseBean) {
         try {
             SQLManipulator.saveBean(exerciseBean);
             initializeProfileBean();
@@ -50,7 +52,7 @@ public class ProfileBean {
         }
     }
 
-    ObservableList<String> getHistory(){
+    public ObservableList<String> getHistory(){
         ObservableList<String> historyStrings = FXCollections.observableArrayList();
         for(ExerciseBean exerciseBean : historyList){
             historyStrings.add(exerciseBean.toString());
@@ -58,11 +60,11 @@ public class ProfileBean {
         return historyStrings;
     }
 
-    ObservableList<PieChart.Data> getPieChartData(){
+    public ObservableList<PieChart.Data> getPieChartData(){
         return chartsDataParser.getPieChartData();
     }
 
-    List<XYChart.Series> getBarChartData(){
+    public List<XYChart.Series> getBarChartData(){
         return chartsDataParser.parseBarData();
     }
 

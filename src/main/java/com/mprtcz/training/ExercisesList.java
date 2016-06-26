@@ -1,5 +1,6 @@
 package com.mprtcz.training;
 
+import com.mprtcz.training.beans.ExerciseBean;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
@@ -8,12 +9,12 @@ import java.util.List;
 /**
  * Created by Azet on 2016-06-16.
  */
-class ExercisesList {
+public class ExercisesList {
     private List<ExerciseBean> exercisesRepsSumList = new ArrayList<>();
 
     private ObservableList<ExerciseBean> historyList;
 
-    ExercisesList(ObservableList<ExerciseBean> historyList) {
+    public ExercisesList(ObservableList<ExerciseBean> historyList) {
         this.historyList = historyList;
     }
 
@@ -29,7 +30,7 @@ class ExercisesList {
         }
     }
 
-    List<ExerciseBean> sumExerciseReps(){
+    public List<ExerciseBean> sumExerciseReps(){
         for(ExerciseBean exerciseBean : historyList){
             addRepsToExercise(exerciseBean, exercisesRepsSumList);
         }
@@ -50,10 +51,9 @@ class ExercisesList {
             }
         }
         return exercisesListGroupedByDate;
-        //TODO sum exercisesWithTheSameDateList in ExercisesWithTheSameDate objects, group them by date and draw on chart
     }
 
-    List<ExercisesWithSameDate> sumExercisesInDates(){
+    public List<ExercisesWithSameDate> sumExercisesInDates(){
         List<ExercisesWithSameDate> days = groupExercisesByDate();
         for(ExercisesWithSameDate date : days){
             date.sumExercises();
@@ -62,7 +62,7 @@ class ExercisesList {
         return days;
     }
 
-    List<String> getAllExercisesNames(){
+    public List<String> getAllExercisesNames(){
         List<String> names = new ArrayList<>();
         for(ExerciseBean exerciseBean: historyList){
             if(!names.contains(exerciseBean.getExerName())){
@@ -72,7 +72,7 @@ class ExercisesList {
         return names;
     }
 
-    class ExercisesWithSameDate{
+    public class ExercisesWithSameDate{
         List<ExerciseBean> exercisesWithTheSameDateList = new ArrayList<>();
         String listDate;
 
@@ -98,11 +98,11 @@ class ExercisesList {
             exercisesWithTheSameDateList = summedBeans;
         }
 
-        List<ExerciseBean> getExercisesWithTheSameDateList() {
+        public List<ExerciseBean> getExercisesWithTheSameDateList() {
             return exercisesWithTheSameDateList;
         }
 
-        String getListDate() {
+        public String getListDate() {
             return listDate;
         }
 

@@ -1,5 +1,7 @@
-package com.mprtcz.training;
+package com.mprtcz.training.chartDataOperators;
 
+import com.mprtcz.training.ExercisesList;
+import com.mprtcz.training.beans.ExerciseBean;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
@@ -15,12 +17,12 @@ public class ChartsDataParser {
     ObservableList<ExerciseBean> historyList;
     ExercisesList exerciseTypes;
 
-    ChartsDataParser(ObservableList<ExerciseBean> historyList) {
+    public ChartsDataParser(ObservableList<ExerciseBean> historyList) {
         this.historyList = historyList;
         exerciseTypes = new ExercisesList(historyList);
     }
 
-    ObservableList<PieChart.Data> getPieChartData(){
+    public ObservableList<PieChart.Data> getPieChartData(){
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList();
         for(ExerciseBean exerciseBean : sumExerciseReps()){
             data.add(new PieChart.Data(exerciseBean.getExerName(), exerciseBean.getReps()));
@@ -33,7 +35,7 @@ public class ChartsDataParser {
         return exerciseTypes.sumExerciseReps();
     }
 
-    List<XYChart.Series> parseBarData(){
+    public List<XYChart.Series> parseBarData(){
         List<ExercisesList.ExercisesWithSameDate> summedExercisesByDates = exerciseTypes.sumExercisesInDates();
         List<XYChart.Series> chartData = new ArrayList<>();
         for(String name : exerciseTypes.getAllExercisesNames()){

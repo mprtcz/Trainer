@@ -1,4 +1,4 @@
-package com.mprtcz.training;
+package com.mprtcz.training.beans;
 
 
 import java.time.LocalDateTime;
@@ -15,30 +15,30 @@ public class ExerciseBean {
     private String stringRepresentation;
     private String dateTimeString;
 
-    ExerciseBean(String name, int reps) {
+    public ExerciseBean(String name, int reps) {
         this.reps = reps;
         this.exerName = name;
         this.dateTime = LocalDateTime.now();
         dateTimeString = dateTime.format(DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm:ss"));
     }
 
-    static class Builder{
+    public static class Builder{
         private final int reps;
         private final String exerName;
 
         private String dateTimeString = "";
 
-        Builder(String exerciseName, int reps){
+        public Builder(String exerciseName, int reps){
             this.exerName = exerciseName;
             this.reps = reps;
         }
 
-        Builder dateTime(String newDateTime){
+        public Builder dateTime(String newDateTime){
             dateTimeString = newDateTime;
             return this;
         }
 
-        ExerciseBean build(){
+        public ExerciseBean build(){
             return new ExerciseBean(this);
         }
 
@@ -59,7 +59,7 @@ public class ExerciseBean {
         }
     }
 
-    String toDayString(){
+    public String toDayString(){
         if(stringRepresentation!=null) {
             String[] parts = stringRepresentation.split("on: ");
             return parts[1].substring(0, 10);
@@ -68,19 +68,19 @@ public class ExerciseBean {
         }
     }
 
-    int getReps() {
+    public int getReps() {
         return reps;
     }
 
-    String getExerName() {
+    public String getExerName() {
         return exerName;
     }
 
-    LocalDateTime getDateTime() {
+    public LocalDateTime getDateTime() {
         return dateTime;
     }
 
-    void addRepsToBean(int reps){
+    public void addRepsToBean(int reps){
         this.reps += reps;
     }
 }

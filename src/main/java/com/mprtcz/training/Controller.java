@@ -1,5 +1,7 @@
 package com.mprtcz.training;
 
+import com.mprtcz.training.beans.ExerciseBean;
+import com.mprtcz.training.beans.ProfileBean;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
@@ -11,7 +13,6 @@ import javafx.scene.control.TextField;
  * Created by Azet on 2016-06-16.
  */
 public class Controller {
-
 
     public ListView<String> exerciseTypesListView;
     public ListView<String> historyListView;

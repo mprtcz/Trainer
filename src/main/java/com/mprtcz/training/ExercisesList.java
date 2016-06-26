@@ -1,6 +1,7 @@
 package com.mprtcz.training;
 
 import com.mprtcz.training.beans.ExerciseBean;
+import com.mprtcz.training.chartDataOperators.ExercisesWithSameDateSorter;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;

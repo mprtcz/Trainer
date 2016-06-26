@@ -1,11 +1,13 @@
-package com.mprtcz.training;
+package com.mprtcz.training.chartDataOperators;
+
+import com.mprtcz.training.ExercisesList;
 
 import java.util.Comparator;
 
 /**
  * Created by Azet on 2016-06-17.
  */
-class ExercisesWithSameDateSorter implements Comparator<ExercisesList.ExercisesWithSameDate> {
+public class ExercisesWithSameDateSorter implements Comparator<ExercisesList.ExercisesWithSameDate> {
     @Override
     public int compare(ExercisesList.ExercisesWithSameDate o, ExercisesList.ExercisesWithSameDate t1) {
 

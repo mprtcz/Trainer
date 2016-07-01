@@ -22,8 +22,6 @@ public class App extends javafx.application.Application {
         window.setScene(scene);
         window.show();
 
-
-
     }
 
     public static void main(String[] args) {

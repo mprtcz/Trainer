@@ -28,7 +28,7 @@ public class Controller {
             exerciseNameTextField.setText(exerciseTypesListView.getSelectionModel().getSelectedItem());
 
         } catch (NullPointerException nex) {
-            System.out.println("Null!");
+            nex.printStackTrace();
         }
     }
 

@@ -27,7 +27,6 @@ public class ChartsDataParser {
         for(ExerciseBean exerciseBean : sumExerciseReps()){
             data.add(new PieChart.Data(exerciseBean.getExerName(), exerciseBean.getReps()));
         }
-        System.out.println(data.toString());
         return data;
     }
 

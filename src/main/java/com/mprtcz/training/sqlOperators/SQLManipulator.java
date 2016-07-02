@@ -14,7 +14,7 @@ public class SQLManipulator {
     public static void saveBean(ExerciseBean bean) throws Exception {
         Class.forName("org.sqlite.JDBC");
 
-        Connection connection = DriverManager.getConnection("jdbc:sqlite:src\\main\\resources\\history.db");
+        Connection connection = DriverManager.getConnection("jdbc:sqlite:history.db");
         Statement statement = connection.createStatement();
 
         statement.executeUpdate("create table if not exists history (name, reps, datetime);");
@@ -38,7 +38,7 @@ public class SQLManipulator {
 
         List<ExerciseBean> list = new ArrayList<ExerciseBean>();
 
-        Connection connection = DriverManager.getConnection("jdbc:sqlite:src\\main\\resources\\history.db");
+        Connection connection = DriverManager.getConnection("jdbc:sqlite:history.db");
         Statement statement = connection.createStatement();
 
         statement.executeUpdate("create table if not exists history (name, reps, datetime);");

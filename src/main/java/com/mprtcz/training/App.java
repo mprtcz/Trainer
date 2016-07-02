@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class App extends javafx.application.Application {
 
     @Override
-    public void start(Stage window) throws Exception{
+    public void start(Stage window) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/trainerMainMenu.fxml"));
         System.out.println(loader.getClass());
         Parent root = loader.load();
@@ -21,8 +21,8 @@ public class App extends javafx.application.Application {
         window.setTitle("Training Logger");
         window.setScene(scene);
         window.show();
-
     }
+
 
     public static void main(String[] args) {
         launch(args);

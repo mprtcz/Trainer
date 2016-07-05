@@ -24,7 +24,7 @@ public class SQLManipulator {
 
         preparedStatement.setString(1, bean.getExerName());
         preparedStatement.setString(2, String.valueOf(bean.getReps()));
-        preparedStatement.setString(3, String.valueOf(bean.getDateTime()));
+        preparedStatement.setString(3, bean.getDateTime());
         preparedStatement.addBatch();
 
         preparedStatement.executeBatch();

@@ -2,7 +2,6 @@ package com.mprtcz.training.beans;
 
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Created by Azet on 2016-02-28.
@@ -19,7 +18,7 @@ public class ExerciseBean {
         this.reps = reps;
         this.exerName = name;
         this.dateTime = LocalDateTime.now();
-        dateTimeString = dateTime.format(DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm:ss"));
+        //dateTimeString = dateTime.format(DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm:ss")).replace("T", " ");
     }
 
     public static class Builder{
@@ -76,8 +75,8 @@ public class ExerciseBean {
         return exerName;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public String getDateTime() {
+        return dateTime.toString().replace("T", " ");
     }
 
     public void addRepsToBean(int reps){

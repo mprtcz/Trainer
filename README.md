@@ -2,7 +2,7 @@
 Java application which allows a user to keep track of any performed activity, storing all data in a SQL database. 
 Application performs statistical analysis and presents results in two graphs. 
 
-Application's UI with inserted data:
+Application's UI with inserted sample data:
 
 ![picture](https://sc-cdn.scaleengine.net/i/7028f4e81b971b84f91b346bac0971f01.png)
 
@@ -23,7 +23,7 @@ History of user's activities is displayed on right side list, `Exercise History`
 ![picture](https://sc-cdn.scaleengine.net/i/7fbf7e5a7227336b979f4c94f20cef8c1.png)
 
 
-The application's statistical analysis of stored data is displayed as two diagrams, Pie Chart representing the percentage of different activities by numbers of reps included in those activities: 
+The application's statistical analysis of stored data is displayed as two diagrams, Pie Chart representing the percentage of different activities by numbers of repetitions included in those activities: 
 
 ![picture](https://sc-cdn.scaleengine.net/i/ecc2fac67223106d3af8cb451bb582a51.png)
 

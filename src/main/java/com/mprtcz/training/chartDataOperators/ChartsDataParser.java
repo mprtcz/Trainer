@@ -1,49 +1,47 @@
 package com.mprtcz.training.chartDataOperators;
 
-import com.mprtcz.training.ExercisesList;
-import com.mprtcz.training.beans.ExerciseBean;
+import com.mprtcz.training.Exercises;
+import com.mprtcz.training.beans.Exercise;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Azet on 2016-06-16.
  */
 public class ChartsDataParser {
-    ObservableList<ExerciseBean> historyList;
-    ExercisesList exerciseTypes;
+    private Exercises exerciseTypes;
 
-    public ChartsDataParser(ObservableList<ExerciseBean> historyList) {
-        this.historyList = historyList;
-        exerciseTypes = new ExercisesList(historyList);
+    public ChartsDataParser(ObservableList<Exercise> historyList) {
+        this.exerciseTypes = new Exercises(historyList);
     }
 
     public ObservableList<PieChart.Data> getPieChartData(){
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList();
-        for(ExerciseBean exerciseBean : sumExerciseReps()){
-            data.add(new PieChart.Data(exerciseBean.getExerName(), exerciseBean.getReps()));
-        }
+        data.addAll(sumExerciseReps().stream().map(exercise ->
+                new PieChart.Data(exercise.getName(), exercise.getReps())).collect(Collectors.toList()));
         return data;
     }
 
-    private List<ExerciseBean> sumExerciseReps(){
+    private Collection<Exercise> sumExerciseReps(){
         return exerciseTypes.sumExerciseReps();
     }
 
-    public List<XYChart.Series> parseBarData(){
-        List<ExercisesList.ExercisesWithSameDate> summedExercisesByDates = exerciseTypes.sumExercisesInDates();
+    public List<XYChart.Series> collectBarChartData() {
+        LinkedHashMap<LocalDate, Collection<Exercise>> summedExercisesInDay = exerciseTypes.sumMappedExercisesInDates();
         List<XYChart.Series> chartData = new ArrayList<>();
-        for(String name : exerciseTypes.getAllExercisesNames()){
+        for (String name : exerciseTypes.getAllExercisesNames()) {
             XYChart.Series series = new XYChart.Series();
             series.setName(name);
-            for(ExercisesList.ExercisesWithSameDate exercisesWithSameDate : summedExercisesByDates){
-                for(ExerciseBean exerciseBean : exercisesWithSameDate.getExercisesWithTheSameDateList()){
-                    if(exerciseBean.getExerName().equals(name)){
-                        series.getData().add(new XYChart.Data<>(exercisesWithSameDate.getListDate(), exerciseBean.getReps()));
+            for (Map.Entry<LocalDate, Collection<Exercise>> entry : summedExercisesInDay.entrySet()) {
+                for (Exercise exercise : entry.getValue()) {
+                    if(exercise.getName().equals(name)) {
+                        series.getData().add(new XYChart.Data<>(entry.getKey().toString(), exercise.getReps()));
                     }
                 }
             }

@@ -1,7 +1,8 @@
 package com.mprtcz.training;
 
-import com.mprtcz.training.beans.ExerciseBean;
-import com.mprtcz.training.beans.ProfileBean;
+import com.mprtcz.training.beans.Exercise;
+import com.mprtcz.training.beans.Profile;
+import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
@@ -24,7 +25,7 @@ public class Controller {
     public BarChart exercisesBarChart;
     public BorderPane borderPane;
 
-    private ProfileBean profileBean;
+    private Profile profile;
 
     public void onExerciseTypesListViewMouseClicked() {
         try {
@@ -36,46 +37,46 @@ public class Controller {
     }
 
     public void onAddButtonClicked() {
-        String exerciseName;
-        int reps;
+        Exercise exercise = buildExerciseFromGUIFields();
+        validateNewExercise(exercise);
+    }
 
+    private Exercise buildExerciseFromGUIFields() {
+        String exerciseName = exerciseNameTextField.getText();
+        int reps = parseNumberOfReps();
+        return new Exercise(exerciseName, reps);
+    }
+
+    private int parseNumberOfReps() {
+        int reps = -1;
         try {
-            exerciseName = exerciseNameTextField.getText();
-
             reps = Integer.parseInt(repeatsTextField.getText());
+        } catch (NumberFormatException e) {
+            messagesLabel.setText("Use positive numeric values only in number of reps");
+        }
+        return reps;
+    }
 
-            ExerciseBean bean = new ExerciseBean(exerciseName, reps);
-
-            if(bean.getReps()>0) {
-                profileBean.addExercise(bean);
-                updateGUI();
-            } else {
-                messagesLabel.setText("Use only positive numbers");
-            }
-
-        } catch (Exception ex) {
-            System.out.println("Exceptions! " +ex.getCause() +" message: " +ex.getMessage());
-            System.out.println(ex.getClass().toString());
-            if(ex.getClass().toString().contains("NumberFormatException")){
-                messagesLabel.setText("Use numeric values only in number of reps");
-            } else {
-                ex.printStackTrace();
-            }
+    private void validateNewExercise(Exercise exercise) {
+        if (exercise.getReps() > 0) {
+            profile.addExercise(exercise);
+            updateGUI();
+        } else if (exercise.getReps() == 0) {
+            messagesLabel.setText("Use only positive numbers");
         }
     }
 
+    @FXML
     public void initialize() {
-        System.out.println("Initialized...");
-
-        profileBean = new ProfileBean();
+        profile = new Profile();
         updateGUI();
     }
 
-    private void updateGUI(){
-        historyListView.setItems(profileBean.getHistory());
-        exerciseTypesListView.setItems(profileBean.getNames());
-        exercisesPieChart.setData(profileBean.getPieChartData());
+    private void updateGUI() {
+        historyListView.setItems(profile.getHistory());
+        exerciseTypesListView.setItems(profile.getNames());
+        exercisesPieChart.setData(profile.getPieChartData());
         exercisesBarChart.getData().clear();
-        exercisesBarChart.getData().addAll(profileBean.getBarChartData());
+        exercisesBarChart.getData().addAll(profile.getBarChartData());
     }
 }
